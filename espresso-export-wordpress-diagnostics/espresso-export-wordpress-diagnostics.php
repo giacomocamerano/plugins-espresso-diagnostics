@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @link              https://jackcamerano.com
+ * @link              https://espressoplugins.com
  * @since             1.0.0
  * @package           Espresso_Export_Wordpress_Diagnostics
  *
  * @wordpress-plugin
- * Plugin Name:       Espresso Export Wordpress Diagnostics
+ * Plugin Name:       Espresso Wordpress Diagnostics
  * Plugin URI:        https://espressoplugins.com
- * Description:       Plugin that extracts a csv with details on WP installation, installed themes, installed plugins for diagnostic purposes.
+ * Description:       Plugin that extracts data on WP installation, installed themes, installed plugins for diagnostic purposes.
  * Version:           1.0.0
  * Author:            Giacomo P. Camerano
- * Author URI:        https://jackcamerano.com
+ * Author URI:        https://espressoplugins.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       espresso-export-wordpress-diagnostics

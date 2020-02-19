@@ -3,7 +3,7 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * @link       https://jackcamerano.com
+ * @link       https://espressoplugins.com
  * @since      1.0.0
  *
  * @package    Espresso_Export_Wordpress_Diagnostics

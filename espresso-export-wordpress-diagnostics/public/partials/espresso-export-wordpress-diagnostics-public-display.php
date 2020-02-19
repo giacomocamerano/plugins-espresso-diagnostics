@@ -5,7 +5,7 @@
  *
  * This file is used to markup the public-facing aspects of the plugin.
  *
- * @link       https://jackcamerano.com
+ * @link       https://espressoplugins.com
  * @since      1.0.0
  *
  * @package    Espresso_Export_Wordpress_Diagnostics
