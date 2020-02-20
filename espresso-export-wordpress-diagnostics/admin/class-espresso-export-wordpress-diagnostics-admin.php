@@ -214,18 +214,15 @@ class Espresso_Export_Wordpress_Diagnostics_Admin {
 	 */
 
 	public function render_admin_page_content() {
-		$wpDetails=$this->getBloginfo();
+		$info=$this->getInfoArray();
 		$wpDescriptors=$this->WPDescriptors;
-		$wpPlugins=$this->getPlugins();
-		$themes=$this->getThemes();
-		
 
 		require_once plugin_dir_path( __FILE__ ). 'partials/espresso-export-wordpress-diagnostics-admin-display.php';//*/
 	}
 
 
 	/**
-	 * Returns all useful data belonging to the Wordpress Install
+	 * Returns all useful data regarding the Wordpress Install
 	 *
 	 * @since    1.0.0
 	 */
@@ -257,7 +254,7 @@ class Espresso_Export_Wordpress_Diagnostics_Admin {
 	}
 
 	/**
-	 * Returns all useful data belonging to the Wordpress Plugins, dividing into an array with active and inactive keys
+	 * Returns all useful data regarding installed Plugins, dividing into an array with active and inactive keys
 	 *
 	 * @since    1.0.0
 	 */
@@ -277,6 +274,12 @@ class Espresso_Export_Wordpress_Diagnostics_Admin {
 		}
 		return $pluginList;
 	}
+
+	/**
+	 * Returns all useful data regarding installed Themes
+	 *
+	 * @since    1.0.0
+	 */
 
 	private function getThemes() {
 		$themes = wp_get_themes( );
@@ -307,6 +310,116 @@ class Espresso_Export_Wordpress_Diagnostics_Admin {
 			
 		}
 		return $themeList;
+	}
+
+	/**
+	 * Returns all useful data regarding the webserver
+	 *
+	 * @since    1.0.0
+	 */
+
+	private function getServerData() {
+		global $is_apache, $is_nginx, $is_IIS, $is_iis7;
+		$server=[];
+		$server['webserver']=__("Unknown server", 'espresso-export-wordpress-diagnostics');
+
+		if ($is_apache) {
+			$server['webserver']=__("Apache", 'espresso-export-wordpress-diagnostics');
+		} elseif ($is_nginx) {
+			$server['webserver']=__("NGINX", 'espresso-export-wordpress-diagnostics');
+		} elseif ($is_IIS) {
+			$server['webserver']=__("IIS", 'espresso-export-wordpress-diagnostics');
+		} elseif ($is_iis7) {
+			$server['webserver']=__("IIS7", 'espresso-export-wordpress-diagnostics');
+		}
+
+		return $server;
+	}
+
+	/**
+	 * Returns all useful data regarding PHP
+	 *
+	 * @since    1.0.0
+	 */
+
+	private function getPHPData() {
+		$php=[];
+		$php['version']=PHP_VERSION;
+		$php['memory_limit']=ini_get('memory_limit');
+		$php['sapi']=php_sapi_name();
+
+		$phpExtensions = get_loaded_extensions();
+		usort($phpExtensions, 'strnatcasecmp');
+		$php['extensions']=implode(", ", $phpExtensions);
+		return $php;
+	}
+
+
+	/**
+	 * Returns all useful data regarding the DB
+	 *
+	 * @since    1.0.0
+	 */
+
+	private function getDBData() {
+		global $wpdb;
+		$db['db']=$wpdb->db_version();
+		return $db;
+	}
+
+
+	/**
+	 * Returns all useful data packaged into an array
+	 *
+	 * @since    1.0.0
+	 */
+
+	private function getInfoArray() {
+		$info=[];
+		$info['wp']=$this->getBloginfo();
+		$info['plugins']=$this->getPlugins();
+		$info['themes']=$this->getThemes();
+		$info['server']=$this->getServerData();
+		$info['php']=$this->getPHPData();
+		$info['db']=$this->getDBData();
+		$info['$_SERVER']=$_SERVER;
+		return $info;
+	}
+
+	/**
+	 * Returns a zip or json file to download with all diagnostic data
+	 *
+	 * @since    1.0.0
+	 */
+
+	public function getPackage() {
+		$nonce = $_REQUEST['_wpnonce'];
+		if ( ! wp_verify_nonce( $nonce, 'espresso_generate_diagnostic_package' ) ) {
+			die(__('Security check failed', 'espresso-export-wordpress-diagnostics'));
+		} else {
+			$info=$this->getInfoArray();
+			$filename=date("Ymd-His")."-diagnostics";
+			if (class_exists("ZipArchive")) {
+				$tmpfile = tempnam("tmp", "zip");
+				$zip = new ZipArchive();
+				$zip->open($tmpfile, ZipArchive::OVERWRITE);
+				foreach ($info as $topic=>$contents) {
+					$zip->addFromString("$topic.json", json_encode($contents,JSON_UNESCAPED_SLASHES));
+				}
+				$zip->close();
+				header('Content-Type: application/zip');
+				header('Content-Length: ' . filesize($tmpfile));
+				header('Content-Disposition: attachment; filename="'.$filename.'.zip"');
+				readfile($tmpfile);
+				unlink($tmpfile); 
+				die();
+			} else {
+				header('Content-disposition: attachment; filename="'.$filename.'.json"');
+				header('Content-type: application/json');
+				echo json_encode($info, JSON_UNESCAPED_SLASHES);
+			}
+			die();
+		}
 	}
 
 }

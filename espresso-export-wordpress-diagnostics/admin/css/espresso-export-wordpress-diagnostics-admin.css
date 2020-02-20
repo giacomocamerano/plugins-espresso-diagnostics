@@ -11,7 +11,7 @@
 .espresso_table tbody > tr > td:first-of-type {
     width:33%;
 }
-.espresso_table tbody > tr > td:nth-of-type(2) {
+.espresso_table tbody > tr > td.help {
     width:2%;
 }
 
