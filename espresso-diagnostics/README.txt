@@ -1,6 +1,5 @@
 === Espresso Diagnostics ===
 Contributors: giacomocamerano
-Donate link: https://espressoplugins.com
 Tags: diagnostics, security, export plugin, json export, csv export
 Requires at least: 4.3
 Tested up to: 5.3

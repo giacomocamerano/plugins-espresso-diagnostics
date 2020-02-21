@@ -7,7 +7,6 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Espresso Diagnostics
- * Plugin URI:        https://espressoplugins.com
  * Description:       Plugin that extracts data on WP installation, installed themes, installed plugins and server info for diagnostic purposes
  * Version:           1.0.0
  * Author:            Espresso Plugins
