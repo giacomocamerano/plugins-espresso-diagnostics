@@ -6,8 +6,8 @@
  * @link       https://espressoplugins.com
  * @since      1.0.0
  *
- * @package    Espresso_Export_Wordpress_Diagnostics
- * @subpackage Espresso_Export_Wordpress_Diagnostics/includes
+ * @package    Espresso__Wordpress_Diagnostics
+ * @subpackage Espresso__Wordpress_Diagnostics/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
- * @package    Espresso_Export_Wordpress_Diagnostics
- * @subpackage Espresso_Export_Wordpress_Diagnostics/includes
+ * @package    Espresso__Wordpress_Diagnostics
+ * @subpackage Espresso__Wordpress_Diagnostics/includes
  * @author     Giacomo P. Camerano <giacomo.camerano@studiocaffeina.it>
  */
-class Espresso_Export_Wordpress_Diagnostics_Deactivator {
+class Espresso__Wordpress_Diagnostics_Deactivator {
 
 	/**
 	 * Short Description. (use period)

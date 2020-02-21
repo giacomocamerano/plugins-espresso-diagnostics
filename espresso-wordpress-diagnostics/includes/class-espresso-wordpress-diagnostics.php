@@ -9,8 +9,8 @@
  * @link       https://espressoplugins.com
  * @since      1.0.0
  *
- * @package    Espresso_Export_Wordpress_Diagnostics
- * @subpackage Espresso_Export_Wordpress_Diagnostics/includes
+ * @package    Espresso__Wordpress_Diagnostics
+ * @subpackage Espresso__Wordpress_Diagnostics/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Espresso_Export_Wordpress_Diagnostics
- * @subpackage Espresso_Export_Wordpress_Diagnostics/includes
+ * @package    Espresso__Wordpress_Diagnostics
+ * @subpackage Espresso__Wordpress_Diagnostics/includes
  * @author     Giacomo P. Camerano <giacomo.camerano@studiocaffeina.it>
  */
-class Espresso_Export_Wordpress_Diagnostics {
+class Espresso__Wordpress_Diagnostics {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,7 +35,7 @@ class Espresso_Export_Wordpress_Diagnostics {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Espresso_Export_Wordpress_Diagnostics_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Espresso__Wordpress_Diagnostics_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -67,12 +67,12 @@ class Espresso_Export_Wordpress_Diagnostics {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'ESPRESSO_EXPORT_WORDPRESS_DIAGNOSTICS_VERSION' ) ) {
-			$this->version = ESPRESSO_EXPORT_WORDPRESS_DIAGNOSTICS_VERSION;
+		if ( defined( 'ESPRESSO__WORDPRESS_DIAGNOSTICS_VERSION' ) ) {
+			$this->version = ESPRESSO__WORDPRESS_DIAGNOSTICS_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'espresso-export-wordpress-diagnostics';
+		$this->plugin_name = 'espresso-wordpress-diagnostics';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -85,10 +85,10 @@ class Espresso_Export_Wordpress_Diagnostics {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Espresso_Export_Wordpress_Diagnostics_Loader. Orchestrates the hooks of the plugin.
-	 * - Espresso_Export_Wordpress_Diagnostics_i18n. Defines internationalization functionality.
-	 * - Espresso_Export_Wordpress_Diagnostics_Admin. Defines all hooks for the admin area.
-	 * - Espresso_Export_Wordpress_Diagnostics_Public. Defines all hooks for the public side of the site.
+	 * - Espresso__Wordpress_Diagnostics_Loader. Orchestrates the hooks of the plugin.
+	 * - Espresso__Wordpress_Diagnostics_i18n. Defines internationalization functionality.
+	 * - Espresso__Wordpress_Diagnostics_Admin. Defines all hooks for the admin area.
+	 * - Espresso__Wordpress_Diagnostics_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -102,27 +102,27 @@ class Espresso_Export_Wordpress_Diagnostics {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-espresso-export-wordpress-diagnostics-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-espresso-wordpress-diagnostics-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-espresso-export-wordpress-diagnostics-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-espresso-wordpress-diagnostics-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-espresso-export-wordpress-diagnostics-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-espresso-wordpress-diagnostics-admin.php';
 
-		$this->loader = new Espresso_Export_Wordpress_Diagnostics_Loader();
+		$this->loader = new Espresso__Wordpress_Diagnostics_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Espresso_Export_Wordpress_Diagnostics_i18n class in order to set the domain and to register the hook
+	 * Uses the Espresso__Wordpress_Diagnostics_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -130,7 +130,7 @@ class Espresso_Export_Wordpress_Diagnostics {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Espresso_Export_Wordpress_Diagnostics_i18n();
+		$plugin_i18n = new Espresso__Wordpress_Diagnostics_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -145,7 +145,7 @@ class Espresso_Export_Wordpress_Diagnostics {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Espresso_Export_Wordpress_Diagnostics_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Espresso__Wordpress_Diagnostics_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -180,7 +180,7 @@ class Espresso_Export_Wordpress_Diagnostics {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Espresso_Export_Wordpress_Diagnostics_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Espresso__Wordpress_Diagnostics_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

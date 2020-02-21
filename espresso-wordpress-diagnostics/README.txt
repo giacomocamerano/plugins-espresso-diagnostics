@@ -17,7 +17,7 @@ You can use the download buttons to create an archive containing all information
 
 == Installation ==
 
-1. Upload the `espresso-export-wordpress-diagnostics` folder to the `/wp-content/plugins/` directory
+1. Upload the `espresso-wordpress-diagnostics` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Access the plugin page under Tools > WP Diagnostics
 4. Read all data relative to your installation or download the zip file containing all the details in json/csv format
