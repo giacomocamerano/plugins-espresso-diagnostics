@@ -19,7 +19,8 @@
 <div class="wrap">
 
     <h2><?php echo __( 'Espresso Wordpress Diagnostics', 'espresso-export-wordpress-details' ); ?></h2>
-    <a class="button-primary" href="<?php echo wp_nonce_url( admin_url( 'admin-ajax.php?action=espresso_generate_diagnostic_package' ), 'espresso_generate_diagnostic_package' ); ?>"><?php echo __("Download all diagnostics", 'espresso-export-wordpress-diagnostics' ); ?></a>
+    <a class="button-primary" href="<?php echo wp_nonce_url( admin_url( 'admin-ajax.php?action=espresso_generate_diagnostic_package_json' ), 'espresso_generate_diagnostic_package_json' ); ?>"><?php echo __("Download all diagnostics (JSON)", 'espresso-export-wordpress-diagnostics' ); ?></a>
+    <a class="button-primary" href="<?php echo wp_nonce_url( admin_url( 'admin-ajax.php?action=espresso_generate_diagnostic_package_csv' ), 'espresso_generate_diagnostic_package_csv' ); ?>"><?php echo __("Download all diagnostics (CSV)", 'espresso-export-wordpress-diagnostics' ); ?></a>
     <h3><?php _e('Wordpress Details', 'espresso-export-wordpress-diagnostics'); ?> <a href="#" data-tooltip="<?php _e('All info on the Wordpress Installation', 'espresso-export-wordpress-diagnostics' ); ?>">[?]</a></h3>
     <?php if (isset($info['wp']) && !empty($info['wp']) && is_array($info['wp'])) { ?>
         <table class="espresso_table widefat" cellspacing="0" id="status">

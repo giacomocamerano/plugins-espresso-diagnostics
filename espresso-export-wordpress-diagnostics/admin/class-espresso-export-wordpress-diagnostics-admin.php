@@ -392,34 +392,106 @@ class Espresso_Export_Wordpress_Diagnostics_Admin {
 	 * @since    1.0.0
 	 */
 
-	public function getPackage() {
+	public function getPackageJson() {
 		$nonce = $_REQUEST['_wpnonce'];
-		if ( ! wp_verify_nonce( $nonce, 'espresso_generate_diagnostic_package' ) ) {
+		if ( ! wp_verify_nonce( $nonce, 'espresso_generate_diagnostic_package_json' ) ) {
 			die(__('Security check failed', 'espresso-export-wordpress-diagnostics'));
 		} else {
 			$info=$this->getInfoArray();
-			$filename=date("Ymd-His")."-diagnostics";
-			if (class_exists("ZipArchive")) {
-				$tmpfile = tempnam("tmp", "zip");
-				$zip = new ZipArchive();
-				$zip->open($tmpfile, ZipArchive::OVERWRITE);
-				foreach ($info as $topic=>$contents) {
-					$zip->addFromString("$topic.json", json_encode($contents,JSON_UNESCAPED_SLASHES));
-				}
-				$zip->close();
-				header('Content-Type: application/zip');
-				header('Content-Length: ' . filesize($tmpfile));
-				header('Content-Disposition: attachment; filename="'.$filename.'.zip"');
-				readfile($tmpfile);
-				unlink($tmpfile); 
-				die();
-			} else {
-				header('Content-disposition: attachment; filename="'.$filename.'.json"');
-				header('Content-type: application/json');
-				echo json_encode($info, JSON_UNESCAPED_SLASHES);
+			foreach ($info as $topic => $contents) {
+				$info[$topic]=json_encode($contents,JSON_UNESCAPED_SLASHES);
 			}
+			$this->createPackage($info, "json");
 			die();
 		}
 	}
+
+	/**
+	 * Returns a zip of csv files to download with all diagnostic data
+	 *
+	 * @since    1.0.0
+	 */
+
+	public function getPackageCsv() {
+		$nonce = $_REQUEST['_wpnonce'];
+		if ( ! wp_verify_nonce( $nonce, 'espresso_generate_diagnostic_package_csv' ) ) {
+			die(__('Security check failed', 'espresso-export-wordpress-diagnostics'));
+		} else {
+			$info=$this->getInfoArray();
+			$files=[];
+			$fieldValue=['wp', 'server', 'php', 'db' ,'$_SERVER'];
+			foreach ($fieldValue as $type) {
+				$arrayCsv=[];
+				$arrayCsv[]=['Field', 'Value'];
+				foreach ($info[$type] as $field => $value) {
+					$arrayCsv[]=[$field, $value];
+				}
+				$files[$type]=$this->generateCsv($arrayCsv);
+			}
+			foreach (['themes', 'plugins'] as $type) {
+				if (isset($info[$type]) && isset($info[$type][0]) && is_array($info[$type][0])) {
+					$arrayCsv=[];
+					$arrayCsv[]=array_keys($info[$type][0]);
+					foreach ($info[$type] as $row) {
+						foreach ($row as $index=>$value) {
+							if (is_array($value)) {
+								$row[$index]=implode(", ", $value);
+							}
+						}
+						$arrayCsv[]=$row;
+					}
+					$files[$type]=$this->generateCsv($arrayCsv);
+				}
+			}
+			$this->createPackage($files, "csv");
+			die();
+		}
+	}
+
+	/**
+	 * Returns a zip file with everything passed into $info
+	 *
+	 * @since    1.0.0
+	 */
+
+	private function createPackage($info, $type) {
+		$filename=date("Ymd-His")."-diagnostics";
+		if (class_exists("ZipArchive")) {
+			$tmpfile = tempnam("tmp", "zip");
+			$zip = new ZipArchive();
+			$zip->open($tmpfile, ZipArchive::OVERWRITE);
+			foreach ($info as $topic=>$contents) {
+				$zip->addFromString("$topic.$type", $contents);
+			}
+			$zip->close();
+			header('Content-Type: application/zip');
+			header('Content-Length: ' . filesize($tmpfile));
+			header('Content-Disposition: attachment; filename="'.$filename.'.zip"');
+			readfile($tmpfile);
+			unlink($tmpfile); 
+			die();
+		} else {
+			die(__('You need ZipArchive to download the zip with csv files', 'espresso-export-wordpress-diagnostics'));
+		}
+	}
+
+	/**
+	 * Generate a csv stream
+	 *
+	 * @since    1.0.0
+	 */
+
+	private function generateCsv($data, $delimiter = ',', $enclosure = '"') {
+		$handle = fopen('php://temp', 'r+');
+		foreach ($data as $line) {
+				fputcsv($handle, $line, $delimiter, $enclosure);
+		}
+		rewind($handle);
+		while (!feof($handle)) {
+				$contents .= fread($handle, 8192);
+		}
+		fclose($handle);
+		return $contents;
+ }
 
 }
