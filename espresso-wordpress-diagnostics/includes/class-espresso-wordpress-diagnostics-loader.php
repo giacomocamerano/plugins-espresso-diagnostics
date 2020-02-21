@@ -19,7 +19,7 @@
  *
  * @package    Espresso__Wordpress_Diagnostics
  * @subpackage Espresso__Wordpress_Diagnostics/includes
- * @author     Giacomo P. Camerano <giacomo.camerano@studiocaffeina.it>
+ * @author     Espresso Plugins <giacomo.camerano@studiocaffeina.it>
  */
 class Espresso__Wordpress_Diagnostics_Loader {
 

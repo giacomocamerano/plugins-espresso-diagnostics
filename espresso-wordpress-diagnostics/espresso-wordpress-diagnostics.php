@@ -10,7 +10,7 @@
  * Plugin URI:        https://espressoplugins.com
  * Description:       Plugin that extracts data on WP installation, installed themes, installed plugins and server info for diagnostic purposes
  * Version:           1.0.0
- * Author:            Giacomo P. Camerano
+ * Author:            Espresso Plugins
  * Author URI:        https://espressoplugins.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt

@@ -18,7 +18,7 @@
  *
  * @package    Espresso__Wordpress_Diagnostics
  * @subpackage Espresso__Wordpress_Diagnostics/admin
- * @author     Giacomo P. Camerano <giacomo.camerano@studiocaffeina.it>
+ * @author     Espresso Plugins <giacomo.camerano@studiocaffeina.it>
  */
 class Espresso__Wordpress_Diagnostics_Admin {
 
@@ -454,7 +454,6 @@ class Espresso__Wordpress_Diagnostics_Admin {
 						}
 						$arrayCsv[]=$row;
 					}
-					pr($arrayCsv); die;
 					$files[$type]=$this->generateCsv($arrayCsv);
 				}
 			}
