@@ -19,8 +19,9 @@
 <div class="wrap">
 
     <h2><?php echo __( 'Espresso Wordpress Diagnostics', 'espresso-wordpress-details' ); ?></h2>
-    <a class="button-primary" href="<?php echo wp_nonce_url( admin_url( 'admin-ajax.php?action=espresso_generate_diagnostic_package_json' ), 'espresso_generate_diagnostic_package_json' ); ?>"><?php echo __("Download all diagnostics (JSON)", 'espresso-wordpress-diagnostics' ); ?></a>
-    <a class="button-primary" href="<?php echo wp_nonce_url( admin_url( 'admin-ajax.php?action=espresso_generate_diagnostic_package_csv' ), 'espresso_generate_diagnostic_package_csv' ); ?>"><?php echo __("Download all diagnostics (CSV)", 'espresso-wordpress-diagnostics' ); ?></a>
+    <a class="button-primary" target="_blank" href="<?php echo wp_nonce_url( admin_url( 'admin-ajax.php?action=espresso_generate_diagnostic_package_json' ), 'espresso_generate_diagnostic_package_json' ); ?>"><?php echo __("Download all diagnostics (JSON)", 'espresso-wordpress-diagnostics' ); ?></a>
+    <a class="button-primary" target="_blank" href="<?php echo wp_nonce_url( admin_url( 'admin-ajax.php?action=espresso_generate_diagnostic_package_csv' ), 'espresso_generate_diagnostic_package_csv' ); ?>"><?php echo __("Download all diagnostics (CSV)", 'espresso-wordpress-diagnostics' ); ?></a>
+    <a class="button-primary" target="_blank" href="<?php echo wp_nonce_url( admin_url( 'admin-ajax.php?action=espresso_generate_diagnostic_package_copy' ), 'espresso_generate_diagnostic_package_copy' ); ?>"><?php echo __("Generate text version to copy and paste", 'espresso-wordpress-diagnostics' ); ?></a>
     <h3><?php _e('Wordpress Details', 'espresso-wordpress-diagnostics'); ?> <a href="#" data-tooltip="<?php _e('All info on the Wordpress Installation', 'espresso-wordpress-diagnostics' ); ?>">[?]</a></h3>
     <?php if (isset($info['wp']) && !empty($info['wp']) && is_array($info['wp'])) { ?>
         <table class="espresso_table widefat" cellspacing="0" id="status">

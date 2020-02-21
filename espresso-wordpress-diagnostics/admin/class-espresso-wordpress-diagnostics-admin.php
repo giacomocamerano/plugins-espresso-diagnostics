@@ -220,6 +220,25 @@ class Espresso__Wordpress_Diagnostics_Admin {
 		require_once plugin_dir_path( __FILE__ ). 'partials/espresso-wordpress-diagnostics-admin-display.php';//*/
 	}
 
+	/**
+	 * Renders a simple page with all data on installation to copy and paste
+	 *
+	 * @since    1.0.0
+	 */
+
+	public function plainDisplay() {
+		$nonce = $_REQUEST['_wpnonce'];
+		if ( ! wp_verify_nonce( $nonce, 'espresso_generate_diagnostic_package_copy' ) ) {
+			die(__('Security check failed', 'espresso-wordpress-diagnostics'));
+		} else {
+			$info=$this->getInfoArray();
+			$wpDescriptors=$this->WPDescriptors;
+
+			require_once plugin_dir_path( __FILE__ ). 'partials/espresso-wordpress-diagnostics-admin-display-plain.php';
+			die();
+		}
+	}
+
 
 	/**
 	 * Returns all useful data regarding the Wordpress Install
@@ -506,6 +525,6 @@ class Espresso__Wordpress_Diagnostics_Admin {
 		}
 		fclose($handle);
 		return $contents;
- }
+	 }
 
 }
