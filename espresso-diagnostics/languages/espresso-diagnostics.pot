@@ -1,21 +1,21 @@
 # Copyright (C) 2020 Espresso Plugins
-# This file is distributed under the same license as the Espresso Wordpress Diagnostics plugin.
+# This file is distributed under the same license as the Espresso Diagnostics plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Espresso Wordpress Diagnostics 1.0.0\n"
+"Project-Id-Version: Espresso Diagnostics 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/espresso-diagnostics\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-02-21T19:06:22+01:00\n"
+"POT-Creation-Date: 2020-02-21T20:41:04+01:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: espresso-diagnostics\n"
 
 #. Plugin Name of the plugin
-msgid "Espresso Wordpress Diagnostics"
+msgid "Espresso Diagnostics"
 msgstr ""
 
 #. Plugin URI of the plugin
@@ -72,7 +72,7 @@ msgid "The Encoding for pages and feeds (set in Settings > Reading)"
 msgstr ""
 
 #: admin/class-espresso-diagnostics-admin.php:77
-#: admin/partials/espresso-diagnostics-admin-display-plain.php:29
+#: admin/class-espresso-diagnostics-admin.php:554
 msgid "Version"
 msgstr ""
 
@@ -206,80 +206,80 @@ msgid "WP Diagnostics"
 msgstr ""
 
 #: admin/class-espresso-diagnostics-admin.php:232
-#: admin/class-espresso-diagnostics-admin.php:417
-#: admin/class-espresso-diagnostics-admin.php:437
+#: admin/class-espresso-diagnostics-admin.php:415
+#: admin/class-espresso-diagnostics-admin.php:435
 msgid "Security check failed"
 msgstr ""
 
-#: admin/class-espresso-diagnostics-admin.php:343
+#: admin/class-espresso-diagnostics-admin.php:341
 msgid "Unknown server"
 msgstr ""
 
-#: admin/class-espresso-diagnostics-admin.php:346
+#: admin/class-espresso-diagnostics-admin.php:344
 msgid "Apache"
 msgstr ""
 
-#: admin/class-espresso-diagnostics-admin.php:348
+#: admin/class-espresso-diagnostics-admin.php:346
 msgid "NGINX"
 msgstr ""
 
-#: admin/class-espresso-diagnostics-admin.php:350
+#: admin/class-espresso-diagnostics-admin.php:348
 msgid "IIS"
 msgstr ""
 
-#: admin/class-espresso-diagnostics-admin.php:352
+#: admin/class-espresso-diagnostics-admin.php:350
 msgid "IIS7"
 msgstr ""
 
-#: admin/class-espresso-diagnostics-admin.php:507
+#: admin/class-espresso-diagnostics-admin.php:509
 msgid "You need ZipArchive to download the zip with csv files"
 msgstr ""
 
-#: admin/partials/espresso-diagnostics-admin-display-plain.php:19
+#: admin/class-espresso-diagnostics-admin.php:543
 msgid "Date of export"
 msgstr ""
 
-#: admin/partials/espresso-diagnostics-admin-display-plain.php:20
+#: admin/class-espresso-diagnostics-admin.php:544
 #: admin/partials/espresso-diagnostics-admin-display.php:25
 msgid "Wordpress Details"
 msgstr ""
 
-#: admin/partials/espresso-diagnostics-admin-display-plain.php:26
+#: admin/class-espresso-diagnostics-admin.php:551
 #: admin/partials/espresso-diagnostics-admin-display.php:47
 msgid "Themes"
 msgstr ""
 
-#: admin/partials/espresso-diagnostics-admin-display-plain.php:32
+#: admin/class-espresso-diagnostics-admin.php:557
 #: admin/partials/espresso-diagnostics-admin-display.php:71
 msgid "There are no themes on this Wordpress installation"
 msgstr ""
 
-#: admin/partials/espresso-diagnostics-admin-display-plain.php:34
+#: admin/class-espresso-diagnostics-admin.php:560
 #: admin/partials/espresso-diagnostics-admin-display.php:73
 msgid "Active Wordpress Plugins"
 msgstr ""
 
-#: admin/partials/espresso-diagnostics-admin-display-plain.php:40
+#: admin/class-espresso-diagnostics-admin.php:566
 #: admin/partials/espresso-diagnostics-admin-display.php:95
 msgid "There are no active plugins on this Wordpress installation"
 msgstr ""
 
-#: admin/partials/espresso-diagnostics-admin-display-plain.php:42
+#: admin/class-espresso-diagnostics-admin.php:569
 #: admin/partials/espresso-diagnostics-admin-display.php:97
 msgid "Inactive Wordpress Plugins"
 msgstr ""
 
-#: admin/partials/espresso-diagnostics-admin-display-plain.php:48
+#: admin/class-espresso-diagnostics-admin.php:575
 #: admin/partials/espresso-diagnostics-admin-display.php:119
 msgid "There are no inactive plugins on this Wordpress installation"
 msgstr ""
 
-#: admin/partials/espresso-diagnostics-admin-display-plain.php:55
+#: admin/class-espresso-diagnostics-admin.php:583
 #: admin/partials/espresso-diagnostics-admin-display.php:127
 msgid "%s Details"
 msgstr ""
 
-#: admin/partials/espresso-diagnostics-admin-display-plain.php:61
+#: admin/class-espresso-diagnostics-admin.php:589
 #: admin/partials/espresso-diagnostics-admin-display.php:148
 msgid "There is no info regarding '%s'"
 msgstr ""
