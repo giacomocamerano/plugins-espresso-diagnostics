@@ -8,8 +8,8 @@
  * @link       https://espressoplugins.com
  * @since      1.0.0
  *
- * @package    Espresso__Wordpress_Diagnostics
- * @subpackage Espresso__Wordpress_Diagnostics/admin/partials
+ * @package    Espresso_Wordpress_Diagnostics
+ * @subpackage Espresso_Wordpress_Diagnostics/admin/partials
  */
 ?>
 

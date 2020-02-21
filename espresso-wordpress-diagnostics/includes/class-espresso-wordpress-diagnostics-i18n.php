@@ -9,8 +9,8 @@
  * @link       https://espressoplugins.com
  * @since      1.0.0
  *
- * @package    Espresso__Wordpress_Diagnostics
- * @subpackage Espresso__Wordpress_Diagnostics/includes
+ * @package    Espresso_Wordpress_Diagnostics
+ * @subpackage Espresso_Wordpress_Diagnostics/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Espresso__Wordpress_Diagnostics
- * @subpackage Espresso__Wordpress_Diagnostics/includes
+ * @package    Espresso_Wordpress_Diagnostics
+ * @subpackage Espresso_Wordpress_Diagnostics/includes
  * @author     Espresso Plugins <giacomo.camerano@studiocaffeina.it>
  */
-class Espresso__Wordpress_Diagnostics_i18n {
+class Espresso_Wordpress_Diagnostics_i18n {
 
 
 	/**

@@ -9,8 +9,8 @@
  * @link       https://espressoplugins.com
  * @since      1.0.0
  *
- * @package    Espresso__Wordpress_Diagnostics
- * @subpackage Espresso__Wordpress_Diagnostics/includes
+ * @package    Espresso_Wordpress_Diagnostics
+ * @subpackage Espresso_Wordpress_Diagnostics/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Espresso__Wordpress_Diagnostics
- * @subpackage Espresso__Wordpress_Diagnostics/includes
+ * @package    Espresso_Wordpress_Diagnostics
+ * @subpackage Espresso_Wordpress_Diagnostics/includes
  * @author     Espresso Plugins <giacomo.camerano@studiocaffeina.it>
  */
-class Espresso__Wordpress_Diagnostics {
+class Espresso_Wordpress_Diagnostics {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,7 +35,7 @@ class Espresso__Wordpress_Diagnostics {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Espresso__Wordpress_Diagnostics_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Espresso_Wordpress_Diagnostics_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -67,8 +67,8 @@ class Espresso__Wordpress_Diagnostics {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'ESPRESSO__WORDPRESS_DIAGNOSTICS_VERSION' ) ) {
-			$this->version = ESPRESSO__WORDPRESS_DIAGNOSTICS_VERSION;
+		if ( defined( 'ESPRESSO_WORDPRESS_DIAGNOSTICS_VERSION' ) ) {
+			$this->version = ESPRESSO_WORDPRESS_DIAGNOSTICS_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
@@ -85,9 +85,9 @@ class Espresso__Wordpress_Diagnostics {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Espresso__Wordpress_Diagnostics_Loader. Orchestrates the hooks of the plugin.
-	 * - Espresso__Wordpress_Diagnostics_i18n. Defines internationalization functionality.
-	 * - Espresso__Wordpress_Diagnostics_Admin. Defines all hooks for the admin area.
+	 * - Espresso_Wordpress_Diagnostics_Loader. Orchestrates the hooks of the plugin.
+	 * - Espresso_Wordpress_Diagnostics_i18n. Defines internationalization functionality.
+	 * - Espresso_Wordpress_Diagnostics_Admin. Defines all hooks for the admin area.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -114,14 +114,14 @@ class Espresso__Wordpress_Diagnostics {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-espresso-wordpress-diagnostics-admin.php';
 
-		$this->loader = new Espresso__Wordpress_Diagnostics_Loader();
+		$this->loader = new Espresso_Wordpress_Diagnostics_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Espresso__Wordpress_Diagnostics_i18n class in order to set the domain and to register the hook
+	 * Uses the Espresso_Wordpress_Diagnostics_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -129,7 +129,7 @@ class Espresso__Wordpress_Diagnostics {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Espresso__Wordpress_Diagnostics_i18n();
+		$plugin_i18n = new Espresso_Wordpress_Diagnostics_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -144,7 +144,7 @@ class Espresso__Wordpress_Diagnostics {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Espresso__Wordpress_Diagnostics_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Espresso_Wordpress_Diagnostics_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -180,7 +180,7 @@ class Espresso__Wordpress_Diagnostics {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Espresso__Wordpress_Diagnostics_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Espresso_Wordpress_Diagnostics_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

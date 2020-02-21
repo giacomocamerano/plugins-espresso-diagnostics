@@ -22,7 +22,7 @@
  * @link       https://espressoplugins.com
  * @since      1.0.0
  *
- * @package    Espresso__Wordpress_Diagnostics
+ * @package    Espresso_Wordpress_Diagnostics
  */
 
 // If uninstall not called from WordPress, then exit.

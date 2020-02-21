@@ -6,8 +6,8 @@
  * @link       https://espressoplugins.com
  * @since      1.0.0
  *
- * @package    Espresso__Wordpress_Diagnostics
- * @subpackage Espresso__Wordpress_Diagnostics/admin
+ * @package    Espresso_Wordpress_Diagnostics
+ * @subpackage Espresso_Wordpress_Diagnostics/admin
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Espresso__Wordpress_Diagnostics
- * @subpackage Espresso__Wordpress_Diagnostics/admin
+ * @package    Espresso_Wordpress_Diagnostics
+ * @subpackage Espresso_Wordpress_Diagnostics/admin
  * @author     Espresso Plugins <giacomo.camerano@studiocaffeina.it>
  */
-class Espresso__Wordpress_Diagnostics_Admin {
+class Espresso_Wordpress_Diagnostics_Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -152,10 +152,10 @@ class Espresso__Wordpress_Diagnostics_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Espresso__Wordpress_Diagnostics_Loader as all of the hooks are defined
+		 * defined in Espresso_Wordpress_Diagnostics_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Espresso__Wordpress_Diagnostics_Loader will then create the relationship
+		 * The Espresso_Wordpress_Diagnostics_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -175,10 +175,10 @@ class Espresso__Wordpress_Diagnostics_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Espresso__Wordpress_Diagnostics_Loader as all of the hooks are defined
+		 * defined in Espresso_Wordpress_Diagnostics_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Espresso__Wordpress_Diagnostics_Loader will then create the relationship
+		 * The Espresso_Wordpress_Diagnostics_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -488,7 +488,7 @@ class Espresso__Wordpress_Diagnostics_Admin {
 	private function createPackage($info, $type) {
 		$filename=date("Ymd-His")."-diagnostics";
 		if (class_exists("ZipArchive")) {
-			$tmpfile = tempnam("tmp", "zip");
+			$tmpfile = tempnam(".", "zip");
 			$zip = new ZipArchive();
 			$zip->open($tmpfile, ZipArchive::OVERWRITE);
 			foreach ($info as $topic=>$contents) {
@@ -517,6 +517,7 @@ class Espresso__Wordpress_Diagnostics_Admin {
 	 */
 
 	private function generateCsv($data, $delimiter = ',', $enclosure = '"') {
+		$contents="";
 		$handle = fopen('php://temp', 'r+');
 		foreach ($data as $line) {
 				fputcsv($handle, $line, $delimiter, $enclosure);

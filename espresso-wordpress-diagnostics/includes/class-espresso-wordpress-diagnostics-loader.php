@@ -6,8 +6,8 @@
  * @link       https://espressoplugins.com
  * @since      1.0.0
  *
- * @package    Espresso__Wordpress_Diagnostics
- * @subpackage Espresso__Wordpress_Diagnostics/includes
+ * @package    Espresso_Wordpress_Diagnostics
+ * @subpackage Espresso_Wordpress_Diagnostics/includes
  */
 
 /**
@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Espresso__Wordpress_Diagnostics
- * @subpackage Espresso__Wordpress_Diagnostics/includes
+ * @package    Espresso_Wordpress_Diagnostics
+ * @subpackage Espresso_Wordpress_Diagnostics/includes
  * @author     Espresso Plugins <giacomo.camerano@studiocaffeina.it>
  */
-class Espresso__Wordpress_Diagnostics_Loader {
+class Espresso_Wordpress_Diagnostics_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.
