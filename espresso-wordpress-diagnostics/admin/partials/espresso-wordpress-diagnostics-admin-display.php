@@ -59,7 +59,7 @@
                 foreach ($info['themes'] as $theme=>$details) { ?>
                     <tr>
                         <td data-export-label="<?php echo $details['name'] ?>"><?php echo $details['name']; ?></td>
-                        <td class="help"><a href="#" data-tooltip="<?php echo $details['description']; ?>">[?]</a></td>
+                        <td class="help"><a href="#" data-tooltip="<?php echo strip_tags($details['description']); ?>">[?]</a></td>
                         <td data-export-label="<?php echo $details['version'] ?>"><?php echo $details['version']; ?></td>
                         <td data-export-label="<?php echo $details['status'] ?>"><?php echo $details['status']; ?></td>
                     </tr><?php
@@ -84,7 +84,7 @@
                 foreach ($info['plugins']['active'] as $plugin=>$details) { ?>
                     <tr>
                         <td data-export-label="<?php echo $details['Name'] ?>"><?php echo $details['Name']; ?></td>
-                        <td class="help"><a href="#" data-tooltip="<?php echo $details['Description']; ?>">[?]</a></td>
+                        <td class="help"><a href="#" data-tooltip="<?php echo strip_tags($details['Description']); ?>">[?]</a></td>
                         <td><?php echo $details['Version']; ?></td>
                     </tr><?php
                 } ?>
@@ -108,7 +108,7 @@
                 foreach ($info['plugins']['inactive'] as $plugin=>$details) { ?>
                     <tr>
                         <td data-export-label="<?php echo $details['Name'] ?>"><?php echo $details['Name']; ?></td>
-                        <td class="help"><a href="#" data-tooltip="<?php echo $details['Description']; ?>">[?]</a></td>
+                        <td class="help"><a href="#" data-tooltip="<?php strip_tags($details['Description']); ?>">[?]</a></td>
                         <td><?php echo $details['Version']; ?></td>
                     </tr><?php
                 } ?>

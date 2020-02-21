@@ -88,7 +88,6 @@ class Espresso__Wordpress_Diagnostics {
 	 * - Espresso__Wordpress_Diagnostics_Loader. Orchestrates the hooks of the plugin.
 	 * - Espresso__Wordpress_Diagnostics_i18n. Defines internationalization functionality.
 	 * - Espresso__Wordpress_Diagnostics_Admin. Defines all hooks for the admin area.
-	 * - Espresso__Wordpress_Diagnostics_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
