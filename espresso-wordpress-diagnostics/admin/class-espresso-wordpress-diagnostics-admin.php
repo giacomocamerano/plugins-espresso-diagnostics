@@ -428,11 +428,25 @@ class Espresso__Wordpress_Diagnostics_Admin {
 				}
 				$files[$type]=$this->generateCsv($arrayCsv);
 			}
-			foreach (['themes', 'plugins'] as $type) {
-				if (isset($info[$type]) && isset($info[$type][0]) && is_array($info[$type][0])) {
+			
+			if (isset($info['themes']) && isset($info['themes'][0]) && is_array($info['themes'][0])) {
+				$arrayCsv=[];
+				$arrayCsv[]=array_keys($info['themes'][0]);
+				foreach ($info['themes'] as $row) {
+					foreach ($row as $index=>$value) {
+						if (is_array($value)) {
+							$row[$index]=implode(", ", $value);
+						}
+					}
+					$arrayCsv[]=$row;
+				}
+				$files['themes']=$this->generateCsv($arrayCsv);
+			}
+			foreach (['plugins_active' => $info['plugins']['active'], 'plugins_inactive' => $info['plugins']['inactive']] as $type => $content) {
+				if (isset($content) && is_array($content)) {
 					$arrayCsv=[];
-					$arrayCsv[]=array_keys($info[$type][0]);
-					foreach ($info[$type] as $row) {
+					$arrayCsv[]=array_keys(reset($content));
+					foreach ($content as $row) {
 						foreach ($row as $index=>$value) {
 							if (is_array($value)) {
 								$row[$index]=implode(", ", $value);
@@ -440,6 +454,7 @@ class Espresso__Wordpress_Diagnostics_Admin {
 						}
 						$arrayCsv[]=$row;
 					}
+					pr($arrayCsv); die;
 					$files[$type]=$this->generateCsv($arrayCsv);
 				}
 			}
