@@ -232,9 +232,7 @@ class Espresso__Wordpress_Diagnostics_Admin {
 			die(__('Security check failed', 'espresso-wordpress-diagnostics'));
 		} else {
 			$info=$this->getInfoArray();
-			$wpDescriptors=$this->WPDescriptors;
-
-			require_once plugin_dir_path( __FILE__ ). 'partials/espresso-wordpress-diagnostics-admin-display-plain.php';
+			echo $this->generateText($info);
 			die();
 		}
 	}
@@ -496,6 +494,10 @@ class Espresso__Wordpress_Diagnostics_Admin {
 			foreach ($info as $topic=>$contents) {
 				$zip->addFromString("$topic.$type", $contents);
 			}
+			
+			// create a summary.txt with plain text version of all info
+			$zip->addFromString("summary.txt", $this->generateText($this->getInfoArray(), false));
+
 			$zip->close();
 			header('Content-Type: application/zip');
 			header('Content-Length: ' . filesize($tmpfile));
@@ -525,6 +527,73 @@ class Espresso__Wordpress_Diagnostics_Admin {
 		}
 		fclose($handle);
 		return $contents;
-	 }
+	}
+
+	/**
+	 * Generate plain text version of the diagnostics
+	 *
+	 * @since    1.0.0
+	 */
+
+
+	private function generateText($info, $tags=true) {
+		$wpDescriptors=$this->WPDescriptors;
+		$text="";
+		$text.="=== ".__('Date of export', 'espresso-wordpress-diagnostics') .": ". date("Y-m-d H:i:s") ." === <br><br>";
+		$text.="=== ".__('Wordpress Details', 'espresso-wordpress-diagnostics')." === <br><br>"; 
+		if (isset($info['wp']) && !empty($info['wp']) && is_array($info['wp'])) {
+			foreach ($info['wp'] as $field=>$value) {
+				$text.=$wpDescriptors[$field]['title'].": ".$value."<br>";
+			}
+		}
+		$text.="<br><br>";
+		$text.="=== ".__('Themes', 'espresso-wordpress-diagnostics')." === <br><br>";
+		if (isset($info['themes']) && !empty($info['themes']) && is_array($info['themes'])) {
+			foreach ($info['themes'] as $theme=>$details) {
+				$text.=$details['name'].": ". __("Version", 'espresso-wordpress-diagnostics')." ".$details['version']. "(".$details['status'].")<br>";
+		}
+		} else {
+			$text.=__("There are no themes on this Wordpress installation",'espresso-wordpress-diagnostics');
+		}
+		$text.="<br><br>";
+		$text.="=== ".__('Active Wordpress Plugins', 'espresso-wordpress-diagnostics')." === <br><br>";
+		if (isset($info['plugins']['active']) && !empty($info['plugins']['active']) && is_array($info['plugins']['active'])) { 
+			foreach ($info['plugins']['active'] as $plugin=>$details) {
+				$text.=$details['Name'].": ".$details['Version']."<br>";
+			}
+		} else {
+			$text.=__("There are no active plugins on this Wordpress installation",'espresso-wordpress-diagnostics');
+		}
+		$text.="<br><br>";
+		$text.="=== ".__('Inactive Wordpress Plugins', 'espresso-wordpress-diagnostics')." === <br><br>";
+		if (isset($info['plugins']['inactive']) && !empty($info['plugins']['inactive']) && is_array($info['plugins']['inactive'])) {
+			foreach ($info['plugins']['inactive'] as $plugin=>$details) {
+				$text.=$details['Name'].": ".$details['Version']."<br>";
+			}
+		} else {
+			$text.=__("There are no inactive plugins on this Wordpress installation",'espresso-wordpress-diagnostics');
+		}
+		$text.="<br><br>";
+
+		$topics=['server', 'php', 'db'];
+
+		foreach ($topics as $topic) {
+
+			$text.="=== ".sprintf(__('%s Details', 'espresso-wordpress-diagnostics'), ucwords($topic))." === <br><br>";
+			if (isset($info[$topic]) && !empty($info[$topic]) && is_array($info[$topic])) {
+				foreach ($info[$topic] as $field=>$value) { 
+					$text.=$field. ": ". $value."<br>"; 
+				}
+			} else {
+				$text.=sprintf(__("There is no info regarding '%s'",'espresso-wordpress-diagnostics'), $topic)."<br>";
+			}
+			$text.="<br><br>";
+		}
+		if (!$tags) {
+			$text=preg_replace('#<br\s*/?>#i', "\n", $text);
+			$text=strip_tags($text);
+		}
+		return $text;
+	}
 
 }
